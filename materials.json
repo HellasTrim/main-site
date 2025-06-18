@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Template Material",
+        "image": "material.jpg",
+        "description": "Template flooring that does not Exist",
+        "cost": "1",
+        "material": "Unknown",
+        "color" : "#dfdfdf",
+        "keywords" : "Insert keywords for search to pick up"
+    },
+    {
+        "title": "Template Material 2",
+        "image": "material.jpg",
+        "description": "Template flooring that does not Exist",
+        "cost": "1",
+        "material": "Unknown",
+        "color" : "#dfdfdf",
+        "keywords" : "Insert keywords for search to pick up"
+    }
+]

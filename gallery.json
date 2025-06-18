@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Project One",
+    "photo": "project-one/main.jpg",
+    "description": "This is the description of Project One.",
+    "extraPhotos": [
+      "project-one/1.jpg",
+      "project-one/2.jpg",
+      "project-one/3.jpg"
+    ]
+  },
+  {
+    "name": "Project Two",
+    "photo": "project-two/main.jpg",
+    "description": "Details about Project Two.",
+    "extraPhotos": [
+      "project-two/a.jpg",
+      "project-two/b.jpg"
+    ]
+  }
+]

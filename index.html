@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ALVIO Customs</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styling.css">
+    </head>
+    <body onload="onLoad()">
+        <div class="top-tab" id="topTab">
+            <div style="display:flex; gap: 20px; padding-left: 20px; width: 100px;">
+                <a class="tab" onclick="goToPage(0)">Home</a>
+                <a class="tab" onclick="goToPage(1)">Materials</a>
+                <a class="tab" onclick="goToPage(2)">Services</a>
+                <a class="tab" onclick="goToPage(3)">About</a>
+                <a class="tab" onclick="goToPage(4)">Contact</a>
+            </div>
+            <div id="tab-indicator"></div>
+        </div>
+        <div class="logo-overlay">
+            <div id="logo" class="centered" style="top: 45%">
+                <div class="logo-button" onclick="goToPage(0, true)" >
+                    <img src="assets/logo_web.png" alt="Logo" style="height: 60px;">
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper"> <!--Page Collection-->
+            <div id="home" class="page active" style="left: 0%; right: 0%;">  <!--Home Page-->
+                <div>
+                    <div class="box" style="max-height: fit-content; min-height: 1100px;">
+                        <div class="bar left-bar"></div>
+                        <div class="bar right-bar"></div>
+                        <div class="background-container">
+                            <img src="https://picsum.photos/1905/1080" style="object-fit: cover; display: block; z-index: 0;">
+                            <div class="overlay darkened"></div>
+                            <div id="logo-placeholder"></div>
+                        </div>
+                    </div>
+                    <!-- <div style="width: 100%; height: 100px; background-color: #222; border-radius: 100px; transform: translate(0%, -50%); z-index: 2000;"></div> -->
+                    <div style="width: 100%; height: 150px; background-color: #22222296; backdrop-filter: blur(25px); border-radius: 50px 50px 100px 100px; transform: translate(0%, -40%); color: white; display: flex; justify-content: center; align-items: flex-end; box-shadow: 0 4px 12px #00000083;">
+                        <h1 style="font-size: 50px;">What We Do</h1>
+                    </div>
+                    <div class="box" style="width: 60%; margin: 0 auto;">
+                        <div class="ladder" style="gap: 50px; width: 100%; height: fit-content;">
+                            <div class="home-expander" style="height: 5px; background-color: #ccc;"></div>
+                            <div class="home-expander smallcontainer" onclick="goToPage(2)"> <!--Windows Block-->
+                                <div class="cabinet" style="gap: 25px; padding: 0 20px;">
+                                    <div class="ladder" style="height: auto; justify-content: space-between; flex: 1;">
+                                        <div>
+                                            <h2 class="hover-title" style="margin: 10px;">Windows</h2>
+                                            <div class="info-container" style="margin: 20px 0px;">At Alvio, we design and install high quality, custom designed and perfectly fit aluminum casing for windows, doors, and any possible application needed</div>
+                                        </div>
+                                        <div style="width: fit-content; margin: 10px; transform: translate(0, 15%);">
+                                            <h2 class="hover-line">See More</h2>
+                                            <div class="hover-line" style="height: 5px; background-color: white; transform: translate(0, -250%);"></div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%; height: 100%; flex: 1;">
+                                        <img src="https://picsum.photos/1200/800?random=1" style="width: 100%; height: 100%; border-radius: 15px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-expander" style="height: 5px; background-color: #ccc;"></div>
+                            <div class="home-expander smallcontainer" onclick="goToPage(2)"> <!--Construction Block-->
+                                <div class="cabinet" style="gap: 25px; padding: 0 20px;">
+                                    <div style="width: 100%; height: 100%; flex: 1;">
+                                        <img src="https://picsum.photos/1200/800?random=2" style="width: 100%; height: 100%; border-radius: 15px;">
+                                    </div>
+                                    <div class="ladder" style="height: auto; justify-content: space-between; flex: 1;">
+                                        <div>
+                                            <h2 class="hover-title" style="margin: 10px;">Construction</h2>
+                                            <div class="info-container" style="margin: 20px 0px;">
+                                                
+                                                Outside of Alvio, we are working around the clock to ensure quality and satisfaction with our fine crafting of any house, lot, or building you need to be a home.
+
+                                            </div>
+                                        </div>
+                                        <div style="width: fit-content; margin: 10px; transform: translate(0, 15%);">
+                                            <h2 class="hover-line">See More</h2>
+                                            <div class="hover-line" style="height: 5px; background-color: white; transform: translate(0, -250%);"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-expander" style="height: 5px; background-color: #ccc;"></div>
+                            <div class="home-expander smallcontainer" onclick="goToPage(1)"> <!--Materials Block-->
+                                <div class="cabinet" style="gap: 25px; padding: 0 20px;">
+                                    <div class="ladder" style="height: auto; justify-content: space-between; flex: 1;">
+                                        <div>
+                                            <h2 class="hover-title" style="margin: 10px;">Materials</h2>
+                                            <div class="info-container" style="margin: 20px 0px;">At Alvio, we design and install high quality, custom designed and perfectly fit aluminum casing for windows, doors, and any possible application needed</div>
+                                        </div>
+                                        <div style="width: fit-content; margin: 10px; transform: translate(0, 15%);">
+                                            <h2 class="hover-line">See More</h2>
+                                            <div class="hover-line" style="height: 5px; background-color: white; transform: translate(0, -250%);"></div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%; height: 100%; flex: 1;">
+                                        <img src="https://picsum.photos/1200/800?random=3" style="width: 100%; height: 100%; border-radius: 15px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-expander" style="height: 5px; background-color: #ccc;"></div>
+                        </div>
+                    </div>
+                    <div style="height: 1000px;"></div>
+                </div>
+            </div>
+            <div id="gallery" class="page" style="left: 100%">  <!--Gallery Page--> 
+                <div id="header">
+                    <h1 class="bold-text" style="font-size: 50px;">Our Materials</h1>
+                    <div class="button-holder">
+                        <select id="sort-options" class="gallery-button" onchange="renderGalleryData()">
+                            <option value="title">Name</option>
+                            <option value="cost">Cost</option>
+                            <option value="material">Material</option>
+                            <option value="color">Color</option>
+                        </select>
+                        <button id="sort-toggle" class="gallery-button" onclick="toggleSort()">Ascending</button>
+                        <input type="text" id="searchInput" class="gallery-button" placeholder="Search Materials..." />
+                    </div>
+                </div>
+                <div class="gallery-scroll-rect">
+                    <div class="gallery-container" id="gallery-container"></div>
+                </div>
+                <div class="gallery-inspector hidden" id="gallery-inspector">
+                    <div id="inspector-content" onclick="event.stopPropagation()">
+                        <button class="inspector-button" onclick="closeInspector()">Close</button>
+                        <div id="item-details"></div>
+                    </div>
+                </div>
+                <div class="overlay galleryblur" id="gallery-overlay"></div>
+            </div>
+            <div id="services" class="page" style="left: 200%">  <!--Services Page-->
+                <div id="header">
+                    <h1 class="bold-text" style="font-size: 50px;">Our Services</h1>
+                </div>
+            </div>
+            <div id="about" class="page" style="left: 300%">  <!--About Page-->
+                <div id="header">
+                    <h1 class="bold-text" style="font-size: 50px;">What is ALVIO?</h1>
+                </div>
+                <div class="wrapper ladder" style="gap: 50px; align-items: center; height: 100%;">
+                    <div class="info-container">
+                        <b>ALVIO</b>, producing homes and the finest aluminum systems since the downfall of the Roman Empire.
+                    </div>
+                    <div id="project-gallery-holder"> <!--This is just a container that holds the gallery-->
+                        <div id="project-gallery" onclick="openProjectSlideshow()" class="button"> <!--includes gallery background-->
+                            <div id="project-gallery-contents"><b>Check out our Projects!</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contact" class="page" style="left: 400%"> <!--Contact Page-->
+                <div id="header">
+                    <h1 class="bold-text" style="font-size: 50px;">Have a Question?</h1>
+                </div>
+                <div class="wrapper">
+                    <div class="cabinet" style="gap: 55px; max-height: fit-content;">
+                        <div class="subcontainer" style="height: 100%;"> <!--Left Container-->
+                            <div class="ladder">
+                                <div class="container-title" style="margin-bottom: 10px;">
+                                    <h2 class="bold-text" style="font-size: 30px;">Reach us here!</h2>
+                                </div>
+                                <div class="minicontainer">
+                                    <h3>Call us!</h3>
+                                    <img src="assets/images/phone-icon.png" style="width: 66px;" alt="Phone Icon">
+                                    <h3>+1 (631) 617-6353</h3>
+                                </div>
+                                <div class="minicontainer">
+                                    <h3>Email us!</h3>
+                                    <img src="assets/images/mail-icon.png" style="width: 66px;" alt="Phone Icon">
+                                    <h3>AlvioDesigns@gmail.com</h3>
+                                </div>
+                                <div class="minicontainer">
+                                    <h3>Find us!</h3>
+                                    <img src="assets/images/ping-icon.png" style="width: 66px;" alt="Phone Icon">
+                                    <h3>Alvio, 89 Cabot Ct, Suite M,<br>Hauppauge, NY</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ladder" style="gap: 50px; height: 100%;"> <!--Right Container-->
+                            <div style="position: relative;"> <!--Message Form-->
+                                <div class="subcontainer"> 
+                                    <div class="ladder">
+                                    <div class="container-title">
+                                    <h2 class="bold-text" style="font-size: 30px;">Or send us a message!</h2>
+                                    </div>
+                                    <form id="input-form" class="ladder" style="gap: 0px;">
+                                        <div class="minicontainer ladder" style="margin: 20px; padding: 20px; gap: 20px; text-align: left;">
+                                        <label for="name-input">Your Name:</label>
+                                        <input type="text" class="text-input" id="name-input" name="name" placeholder="How you would like to be addressed (Optional)">
+                                        <label for="email-input">Contact Info:</label>
+                                        <input type="text" class="text-input" id="email-input" name="email" placeholder="Where you would like us to reach you back" required>
+                                        <label for="message-input">Your Message:</label>
+                                        <textarea class="text-input" id="message-input" name="message" placeholder="Enter your question, or even just hello if you're bored" required rows="5" cols="50" style="transition: all 0.35s ease;"></textarea>
+                                        </div>
+                                        <div class="cabinet">
+                                            <button id="send-message-button" type="submit" class="send-message-button" style="width: 50%; margin-bottom: 20px; font-weight: bolder;">Send!</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                                <div id="form-overlay" class="overlay">
+                                    <h3 id="response-message"></h3>
+                                </div>
+                            </div>
+                            <div class="subcontainer" style="width: 100%; align-self: center;"> <!--Social Media Buttons-->
+                                <div class="cabinet" style="max-height: 150px;">
+                                    <div class="container-title square" style="text-align: center; vertical-align: middle; padding: 10px; margin: 10px;">
+                                        <h2 class="bold-text" style="font-size: 30px;">Got Media?</h2>
+                                    </div>
+                                    <div class="socials-square">
+                                        <div class="button-overlay">
+                                            <h3>Instagram</h3>
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" style="width: 33px; border-radius: 5px;" alt="Phone Icon">
+                                        </div>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" class="absolute-image" alt="">
+                                    </div>
+                                    <div class="socials-square">
+                                        <div class="button-overlay">
+                                            <h3>Facebook</h3>
+                                            <img src="https://store-images.s-microsoft.com/image/apps.37935.9007199266245907.b029bd80-381a-4869-854f-bac6f359c5c9.91f8693c-c75b-4050-a796-63e1314d18c9" style="width: 33px; border-radius: 5px;" alt="Phone Icon">
+                                        </div>
+                                        <img src="https://store-images.s-microsoft.com/image/apps.37935.9007199266245907.b029bd80-381a-4869-854f-bac6f359c5c9.91f8693c-c75b-4050-a796-63e1314d18c9" class="absolute-image" alt="">
+                                    </div>
+                                    <div class="socials-square">
+                                        <div class="button-overlay">
+                                            <h3>Youtube</h3>
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKfPimrl1lwgrW3OHOuuyReVPqtc_Hd7mp4A&s" style="width: 33px; border-radius: 5px;" alt="Phone Icon">
+                                        </div>
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKfPimrl1lwgrW3OHOuuyReVPqtc_Hd7mp4A&s" class="absolute-image" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js" async defer></script>
+    </body>
+</html>
