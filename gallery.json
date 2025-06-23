@@ -1,7 +1,8 @@
 [
   {
-    "name": "Project One",
-    "photo": "project-one/main.jpg",
+    "name": "TITLE CARD",
+    "photo": "https://picsum.photos/500/325?random=1",
+    "location": "Place",
     "description": "This is the description of Project One.",
     "extraPhotos": [
       "project-one/1.jpg",
@@ -10,12 +11,25 @@
     ]
   },
   {
-    "name": "Project Two",
-    "photo": "project-two/main.jpg",
-    "description": "Details about Project Two.",
+    "name": "TITLE CARD",
+    "photo": "https://picsum.photos/500/325?random=2",
+    "location": "Place",
+    "description": "This is the description of Project One.",
     "extraPhotos": [
-      "project-two/a.jpg",
-      "project-two/b.jpg"
+      "project-one/1.jpg",
+      "project-one/2.jpg",
+      "project-one/3.jpg"
+    ]
+  },
+  {
+    "name": "TITLE CARD",
+    "photo": "https://picsum.photos/500/325?random=3",
+    "location": "Place",
+    "description": "This is the description of Project One.",
+    "extraPhotos": [
+      "project-one/1.jpg",
+      "project-one/2.jpg",
+      "project-one/3.jpg"
     ]
   }
 ]

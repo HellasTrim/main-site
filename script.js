@@ -434,14 +434,16 @@ function openProjectSlideshow()
   projectGallery.onclick = null;
   projectGalleryContent.innerHTML = 
   `
-  <div class="cabinet transition" id="gallery-cabinet" style="gap: 20px; vertical-align: middle;">
-    <div class="arrow-button" onclick="moveProjectSlideshow(-1)">
+  <div class="cabinet transition" id="gallery-cabinet" style="gap: 5px; vertical-align: middle;">
+    <div class="arrow-button" onclick="moveSlideshow(-1)">
       <img src="assets/images/arrow-icon.png" style="width:200%; transform: translate(-25%, -25%) scaleX(-1);">
     </div>
-    <div id="project-slider">
+    <div class="slideshow">
+      <div id="project-slider">
 
+      </div>
     </div>
-    <div class="arrow-button" onclick="moveProjectSlideshow(1)">
+    <div class="arrow-button" onclick="moveSlideshow(1)">
       <img src="assets/images/arrow-icon.png" style="width:200%; transform: translate(-25%, -25%);">
     </div>
   </div>
@@ -450,43 +452,52 @@ function openProjectSlideshow()
   setupProjectSlideshow();
 }
 
-function openProjectPhotos()
+function openProjectPhotos(index)
 {
-  const viewer = document.getElementById("project-viewer");
+  const viewer = document.getElementById("expanded-slide");
   const cabinet = document.getElementById("gallery-cabinet");
   const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
 
   projectGallery.classList.remove("slideshow");
   projectGallery.classList.add("gallery");
-  viewer.classList.remove("button");
+  //viewer.classList.remove("button");
 
   cabinet.style.gap = 0;
-
-  viewer.innerHTML = 
-  `Balls<br>Balls<br>Balls<br>Balls<br>Balls<br>
-  `;
 
   arrows.forEach(button => {
     button.classList.add("disabled");
   });
   
+  const project = slideshowData[index];
+
+  viewer.innerHTML = `
+  <div class="bigslidecontainer">
+    <div class="cabinet" style="height:fit-content; display: flex; width: 100%; justify-content: space-between;">
+      <button onclick="closeProjectPhotos()">Close</button>
+      <h2>${project.name}</h2>
+      <div style="width: 75px"></div>
+    </div>
+    <img src="${project.photo}" alt="${project.name}" style="height:50%; border-radius: 15px;">
+    <h3>${project.location}</h3>
+  </div>`;
 }
 
 function closeProjectPhotos()
 {
-  const viewer = document.getElementById("project-viewer");
-  const cabinet = document.getElementById("gallery-cabinet");
-  const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
+  // // const viewer = document.getElementById("project-viewer");
+  // // const cabinet = document.getElementById("gallery-cabinet");
+  // const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
 
-  projectGallery.classList.add("slideshow");
-  projectGallery.classList.remove("gallery");
-  viewer.classList.add("button");
+  // projectGallery.classList.add("slideshow");
+  // projectGallery.classList.remove("gallery");
+  // // viewer.classList.add("button");
 
-  cabinet.style.gap = "20px";
+  // // cabinet.style.gap = "20px";
 
-  arrows.forEach(button => {
-    button.classList.remove("disabled");
-  });
+  // arrows.forEach(button => {
+  //   button.classList.remove("disabled");
+  // });
+  openProjectSlideshow();
 }
 
 function closeProjectSlideshow()
@@ -494,27 +505,83 @@ function closeProjectSlideshow()
 
 }
 
-let setupSlideshow = false;
+let slideshowCached = false;
+let slideshowData = []
 function setupProjectSlideshow()
 {
-  if(setupSlideshow) return;
+  console.log("Slideshow setup called");
+  fetchSlideshowData();
+}
+function fetchSlideshowData()
+{
+  fetch('gallery.json')
+  .then(response => {
+    if(!response.ok) throw new Error("Failed to load JSON");
+    return response.json();
+  })
+  .then(data =>{
+    slideshowData = data;
+    constructSlideshow();
+  })
+  .catch(error =>{
+    console.error("Error loading slideshow data", error);
+  })
+}
+function constructSlideshow()
+{
+  const slider = document.getElementById("project-slider");
+  slider.innerHTML = "";
 
-  
+  slideshowData.forEach((project, index) =>{
+    const item = document.createElement("div");
+    item.className = "button slideshow-item";
+    item.innerHTML = `
+    <div class="slidecontainer">
+      <h2>${project.name}</h2>
+      <img src="${project.photo}" alt="${project.name}" style="max-height:325px; width: 100%; border-radius: 15px;">
+      <h3>${project.location}</h3>
+    </div>`;
 
-  setupSlideshow = true;
+    item.addEventListener('click', () => {
+      if(index === slideshowIndex){
+        document.querySelectorAll('.slideshow-item').forEach(s => {
+          if(s.id === 'expanded-slide') s.removeAttribute('id');
+        });
+
+        item.id = 'expanded-slide';
+        openProjectPhotos(index);
+      }
+    })
+
+    slider.appendChild(item);
+  });
+
+  updateSlideshowPos();
 }
 
-
-function moveProjectSlideshow(direction)
+let slideshowIndex = 0;
+function moveSlideshow(direction)
 {
+  slideshowIndex = (slideshowIndex + direction + slideshowData.length) % slideshowData.length;
+  updateSlideshowPos();
+}
 
+function updateSlideshowPos()
+{
+  const items = document.querySelectorAll(".slideshow-item");
+  items.forEach((item, i) => {
+    let offset = (i - slideshowIndex + slideshowData.length) % slideshowData.length;
+    if(offset > slideshowData.length / 2) offset -= slideshowData.length;
+    item.style.left = `${offset * 100}%`;
+    // item.style.zIndex = 10 - Math.abs(i - slideshowIndex);
+  })
 }
 
 function resetSlideshow()
 {
-
+  slideshowIndex = 0;
+  updateSlideshowPos();
 }
-
 
 
 
