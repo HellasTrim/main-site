@@ -429,6 +429,7 @@ const projectGalleryContent = document.getElementById("project-gallery-contents"
 
 function openProjectSlideshow()
 {
+  projectGallery.classList.remove("gallery");
   projectGallery.classList.remove("button");
   projectGallery.classList.add("slideshow");
   projectGallery.onclick = null;
@@ -486,18 +487,18 @@ function closeProjectPhotos()
 {
   // // const viewer = document.getElementById("project-viewer");
   // // const cabinet = document.getElementById("gallery-cabinet");
-  // const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
+  const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
 
-  // projectGallery.classList.add("slideshow");
-  // projectGallery.classList.remove("gallery");
+  projectGallery.classList.add("slideshow");
+  projectGallery.classList.remove("gallery");
   // // viewer.classList.add("button");
 
   // // cabinet.style.gap = "20px";
 
-  // arrows.forEach(button => {
-  //   button.classList.remove("disabled");
-  // });
-  openProjectSlideshow();
+  arrows.forEach(button => {
+    button.classList.remove("disabled");
+  });
+  // openProjectSlideshow();
 }
 
 function closeProjectSlideshow()
