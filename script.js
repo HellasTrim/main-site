@@ -453,8 +453,11 @@ function openProjectSlideshow()
   setupProjectSlideshow();
 }
 
+let suppressNextSlideClick = false;
+
 function openProjectPhotos(index)
 {
+  console.log("Trying to open project photos");
   const viewer = document.getElementById("expanded-slide");
   const cabinet = document.getElementById("gallery-cabinet");
   const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
@@ -481,25 +484,42 @@ function openProjectPhotos(index)
     <img src="${project.photo}" alt="${project.name}" style="height:50%; border-radius: 15px;">
     <h3>${project.location}</h3>
   </div>`;
+
+  inPhotoGallery = true;
 }
 
-function closeProjectPhotos()
-{
-  // // const viewer = document.getElementById("project-viewer");
-  // // const cabinet = document.getElementById("gallery-cabinet");
+function closeProjectPhotos() {
+  console.log("Trying to close project photos");
+  const viewer = document.getElementById("expanded-slide");
   const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
 
   projectGallery.classList.add("slideshow");
   projectGallery.classList.remove("gallery");
-  // // viewer.classList.add("button");
-
-  // // cabinet.style.gap = "20px";
 
   arrows.forEach(button => {
     button.classList.remove("disabled");
   });
-  // openProjectSlideshow();
+
+  if (slideshowIndex !== null && viewer) {
+    const project = slideshowData[slideshowIndex];
+    
+    viewer.innerHTML = `
+      <h3 id="project-name" style="text-align: center;">${project.name}</h3>
+      <img src="${project.photo}" alt="${project.name}" style="border-radius: 20px; margin: 10px;">
+    `;
+
+    //viewer.id = "expanded-slide"; // restore ID if it was cleared
+    viewer.onclick = () => openProjectPhotos(slideshowIndex); // re-assign click
+
+
+    document.getElementById('expanded-slide').removeAttribute('id');
+
+    suppressNextSlideClick = true;
+  }
+
+  inPhotoGallery = false;
 }
+
 
 function closeProjectSlideshow()
 {
@@ -544,15 +564,21 @@ function constructSlideshow()
     </div>`;
 
     item.addEventListener('click', () => {
-      if(index === slideshowIndex){
+      if (suppressNextSlideClick) {
+        suppressNextSlideClick = false; // reset the flag
+        return; // prevent click logic
+      }
+
+      if (index === slideshowIndex) {
+        console.log("Got Expand Slide from Element Click, iPG: " + inPhotoGallery);
         document.querySelectorAll('.slideshow-item').forEach(s => {
-          if(s.id === 'expanded-slide') s.removeAttribute('id');
+          if (s.id === 'expanded-slide') s.removeAttribute('id');
         });
 
         item.id = 'expanded-slide';
         openProjectPhotos(index);
       }
-    })
+    });
 
     slider.appendChild(item);
   });
@@ -561,6 +587,7 @@ function constructSlideshow()
 }
 
 let slideshowIndex = 0;
+let inPhotoGallery = false;
 function moveSlideshow(direction)
 {
   slideshowIndex = (slideshowIndex + direction + slideshowData.length) % slideshowData.length;
