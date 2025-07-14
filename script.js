@@ -455,9 +455,24 @@ function openProjectSlideshow()
 
 let suppressNextSlideClick = false;
 
+function tryOpenPhotos(index){
+  //console.log("Trying to open project photos");
+  if (index === slideshowIndex && !inPhotoGallery) {
+    if (suppressNextSlideClick) {
+      suppressNextSlideClick = false; // reset the flag
+      return false; // prevent click logic
+    }
+    //console.log("Got Expand Slide from Element Click, iPG: " + inPhotoGallery);
+    document.querySelectorAll('.slideshow-item').forEach(s => {
+      if (s.id === 'expanded-slide') s.removeAttribute('id');
+    });
+
+    return true;
+  }
+}
+
 function openProjectPhotos(index)
 {
-  console.log("Trying to open project photos");
   const viewer = document.getElementById("expanded-slide");
   const cabinet = document.getElementById("gallery-cabinet");
   const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
@@ -477,7 +492,7 @@ function openProjectPhotos(index)
   viewer.innerHTML = `
   <div class="bigslidecontainer">
     <div class="cabinet" style="height:fit-content; display: flex; width: 100%; justify-content: space-between;">
-      <button onclick="closeProjectPhotos()">Close</button>
+      <button id="temp_close_button">Close</button>
       <h2>${project.name}</h2>
       <div style="width: 75px"></div>
     </div>
@@ -485,11 +500,16 @@ function openProjectPhotos(index)
     <h3>${project.location}</h3>
   </div>`;
 
+  document.getElementById("temp_close_button").onclick = (e) => {
+    e.stopPropagation;
+    closeProjectPhotos();
+  };
+
   inPhotoGallery = true;
 }
 
 function closeProjectPhotos() {
-  console.log("Trying to close project photos");
+  //console.log("Trying to close project photos");
   const viewer = document.getElementById("expanded-slide");
   const arrows = projectGalleryContent.querySelectorAll(".arrow-button");
 
@@ -508,13 +528,22 @@ function closeProjectPhotos() {
       <img src="${project.photo}" alt="${project.name}" style="border-radius: 20px; margin: 10px;">
     `;
 
-    //viewer.id = "expanded-slide"; // restore ID if it was cleared
-    viewer.onclick = () => openProjectPhotos(slideshowIndex); // re-assign click
+    suppressNextSlideClick = true;
 
+    //viewer.id = "expanded-slide"; // restore ID if it was cleared
+    viewer.onclick = () => {
+      //console.log("viewer clicked", suppressNextSlideClick);
+      if (suppressNextSlideClick) {
+        suppressNextSlideClick = false;
+        return;
+      }
+      //console.log("Closing project photos");
+      tryOpenPhotos(slideshowIndex);
+    };
+  
 
     document.getElementById('expanded-slide').removeAttribute('id');
 
-    suppressNextSlideClick = true;
   }
 
   inPhotoGallery = false;
@@ -564,17 +593,7 @@ function constructSlideshow()
     </div>`;
 
     item.addEventListener('click', () => {
-      if (suppressNextSlideClick) {
-        suppressNextSlideClick = false; // reset the flag
-        return; // prevent click logic
-      }
-
-      if (index === slideshowIndex) {
-        console.log("Got Expand Slide from Element Click, iPG: " + inPhotoGallery);
-        document.querySelectorAll('.slideshow-item').forEach(s => {
-          if (s.id === 'expanded-slide') s.removeAttribute('id');
-        });
-
+      if(tryOpenPhotos(index)){
         item.id = 'expanded-slide';
         openProjectPhotos(index);
       }

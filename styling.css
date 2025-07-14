@@ -352,7 +352,7 @@ button:active{
     height: 100%;
     max-height: 1000px;
     overflow: hidden;
-    transition: all 1s ease;
+    transition: all 0.75s ease;
     box-shadow: 0 4px 12px #00000083;
     /* background: #00000083;
     border-radius: 12px;
